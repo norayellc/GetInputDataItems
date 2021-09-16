@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1771,2819</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,2338</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="35">
@@ -86,7 +86,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PrepInputFile" sap:VirtualizedContainerService.HintSize="1781,2654" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="PrepInputFile" sap:VirtualizedContainerService.HintSize="926,2173" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="InputFileItems" />
       <Variable x:TypeArguments="x:String" Default="PrepInputFIle" Name="WorkflowName" />
@@ -105,7 +105,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Inizialize" sap:VirtualizedContainerService.HintSize="1739,283" sap2010:WorkflowViewState.IdRef="Sequence_8">
+    <Sequence DisplayName="Inizialize" sap:VirtualizedContainerService.HintSize="884,283" sap2010:WorkflowViewState.IdRef="Sequence_8">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -121,13 +121,13 @@
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="1739,2016" sap2010:WorkflowViewState.IdRef="Sequence_24">
+    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="884,1535" sap2010:WorkflowViewState.IdRef="Sequence_24">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[File.Exists(in_InputFilePath)]" DisplayName="InputFileExists" sap:VirtualizedContainerService.HintSize="1697,1833" sap2010:WorkflowViewState.IdRef="If_2">
+      <If Condition="[File.Exists(in_InputFilePath)]" DisplayName="InputFileExists" sap:VirtualizedContainerService.HintSize="842,544" sap2010:WorkflowViewState.IdRef="If_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -135,16 +135,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="HandlingInputFile" sap:VirtualizedContainerService.HintSize="1276,1675" sap2010:WorkflowViewState.IdRef="Sequence_21">
+          <Sequence DisplayName="HandlingInputFile" sap:VirtualizedContainerService.HintSize="421,386" sap2010:WorkflowViewState.IdRef="Sequence_21">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[{&quot;.xls&quot;,&quot;.xlsx&quot;}.Contains(Path.GetExtension(in_InputFilePath).ToLower)]" DisplayName="GetInputFile" sap:VirtualizedContainerService.HintSize="1234,326" sap2010:WorkflowViewState.IdRef="If_6">
+            <If Condition="[{&quot;.xls&quot;,&quot;.xlsx&quot;}.Contains(Path.GetExtension(in_InputFilePath).ToLower)]" DisplayName="GetInputFile" sap:VirtualizedContainerService.HintSize="379,51" sap2010:WorkflowViewState.IdRef="If_6">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -177,143 +177,23 @@
                 </ui:ReadCsvFile>
               </If.Else>
             </If>
-            <If Condition="[InputFileItems.Columns.Contains(&quot;Timestamp&quot;) and InputFileItems.Columns.Contains(&quot;Status&quot;)]" DisplayName="CheckTimestampAndStatus" sap:VirtualizedContainerService.HintSize="1234,1126" sap2010:WorkflowViewState.IdRef="If_3">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <ui:FilterDataTable DataTable="[InputFileItems]" DisplayName="SelectItemsWithEmptyTimestamp" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="334,160" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[out_InputDataItems]" SelectColumnsMode="Keep">
-                  <ui:FilterDataTable.Filters>
-                    <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                      <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
-                        <ui:FilterOperationArgument.Column>
-                          <InArgument x:TypeArguments="x:String">["Timestamp"]</InArgument>
-                        </ui:FilterOperationArgument.Column>
-                      </ui:FilterOperationArgument>
-                    </scg:List>
-                  </ui:FilterDataTable.Filters>
-                  <ui:FilterDataTable.SelectColumns>
-                    <scg:List x:TypeArguments="InArgument" Capacity="4">
-                      <x:Null />
-                    </scg:List>
-                  </ui:FilterDataTable.SelectColumns>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:FilterDataTable>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="AddTimestampAndStatusColumnExistingFile" sap:VirtualizedContainerService.HintSize="855,968" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[not InputFileItems.Columns.Contains(&quot;Timestamp&quot;)]" DisplayName="AddTimestampColumnExistingFile" sap:VirtualizedContainerService.HintSize="813,224" sap2010:WorkflowViewState.IdRef="If_8">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <If.Then>
-                      <Sequence DisplayName="AddColumn" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_16">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:AddDataColumn x:TypeArguments="sd:DataColumn" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="TimeStamp" DataTable="[InputFileItems]" DisplayName="AddTimestampColumn" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
-                        <Assign DisplayName="GetInputDataItemsAllRecords" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_4">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="sd:DataTable">[out_InputDataItems]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="sd:DataTable">[InputFileItems]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <ui:FilterDataTable DataTable="[InputFileItems]" DisplayName="SelectEmptyTimestamp" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[out_InputDataItems]" SelectColumnsMode="Keep">
-                        <ui:FilterDataTable.Filters>
-                          <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                            <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
-                              <ui:FilterOperationArgument.Column>
-                                <InArgument x:TypeArguments="x:String">["Timestamp"]</InArgument>
-                              </ui:FilterOperationArgument.Column>
-                            </ui:FilterOperationArgument>
-                          </scg:List>
-                        </ui:FilterDataTable.Filters>
-                        <ui:FilterDataTable.SelectColumns>
-                          <scg:List x:TypeArguments="InArgument" Capacity="4">
-                            <x:Null />
-                          </scg:List>
-                        </ui:FilterDataTable.SelectColumns>
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </ui:FilterDataTable>
-                    </If.Else>
-                  </If>
-                  <If Condition="[not InputFileItems.Columns.Contains(&quot;Status&quot;)]" DisplayName="AddStatusColumnExistingFile" sap:VirtualizedContainerService.HintSize="813,218" sap2010:WorkflowViewState.IdRef="If_9">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <If.Then>
-                      <ui:AddDataColumn x:TypeArguments="sd:DataColumn" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Status" DataTable="[InputFileItems]" DisplayName="AddStatusColumn" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" />
-                    </If.Then>
-                    <If.Else>
-                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Column Status&quot;]">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </ui:LogMessage>
-                    </If.Else>
-                  </If>
-                  <If Condition="[{&quot;.xls&quot;,&quot;.xlsx&quot;}.Contains(Path.GetExtension(in_InputFilePath).ToLower)]" DisplayName="WriteNewColumns" sap:VirtualizedContainerService.HintSize="813,354" sap2010:WorkflowViewState.IdRef="If_11">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <If.Then>
-                      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="ExcelScopeWriteInput" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_InputFilePath]">
-                        <ui:ExcelApplicationScope.Body>
-                          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                            </ActivityAction.Argument>
-                            <ui:ExcelWriteRange AddHeaders="True" DataTable="[InputFileItems]" DisplayName="WriteColumnsToExcel" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_SheetName]" StartingCell="A1" />
-                          </ActivityAction>
-                        </ui:ExcelApplicationScope.Body>
-                      </ui:ExcelApplicationScope>
-                    </If.Then>
-                    <If.Else>
-                      <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[InputFileItems]" Delimitator="Comma" DisplayName="WriteColumnsToCsv" FilePath="[in_InputFilePath]" sap:VirtualizedContainerService.HintSize="334,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" />
-                    </If.Else>
-                  </If>
-                </Sequence>
-              </If.Else>
-            </If>
-            <If Condition="[out_InputDataItems.Rows.count=0]" DisplayName="BackUpInputFileProcessed" sap:VirtualizedContainerService.HintSize="1234,51" sap2010:WorkflowViewState.IdRef="If_17">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CheckTimestampAndStatus workflow" sap:VirtualizedContainerService.HintSize="379,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[WorkflowsDir+&quot;CheckTimestampAndStatusColumn.xaml&quot;]">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="InputFileItems">
+                  <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="InputFileItems" />
+                </InArgument>
+                <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InputDataItems">
+                  <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="out_InputDataItems" />
+                </OutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_InputFilePath">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_InputFilePath" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_SheetName">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_SheetName" />
+                </InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <If Condition="[out_InputDataItems.Rows.count=0]" DisplayName="BackUpInputFileProcessed" sap:VirtualizedContainerService.HintSize="379,51" sap2010:WorkflowViewState.IdRef="If_17">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -344,40 +224,40 @@
           </Sequence>
         </If.Else>
       </If>
-      <If Condition="[in_DbQueryInfo.All(Function(pair) pair.Value.ToString.Length&gt;0) and out_InputDataItems.rows.count=0]" DisplayName="DbQueryInfoExists" sap:VirtualizedContainerService.HintSize="1697,51" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[in_DbQueryInfo.All(Function(pair) pair.Value.ToString.Length&gt;0) and out_InputDataItems.rows.count=0]" DisplayName="DbQueryInfoExists" sap:VirtualizedContainerService.HintSize="842,859" sap2010:WorkflowViewState.IdRef="If_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="GetItemsFromDbSeq" sap:VirtualizedContainerService.HintSize="699,1226" sap2010:WorkflowViewState.IdRef="Sequence_17">
+          <Sequence DisplayName="GetItemsFromDbSeq" sap:VirtualizedContainerService.HintSize="526,682" sap2010:WorkflowViewState.IdRef="Sequence_17">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ReadTextFile Content="[SqlQuery]" DisplayName="ReadSqlQuery" FileName="[in_DbQueryInfo(&quot;SqlFilePath&quot;)]" sap:VirtualizedContainerService.HintSize="657,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
-            <TryCatch DisplayName="TryExecuteQuery" sap:VirtualizedContainerService.HintSize="657,315" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <ui:ReadTextFile Content="[SqlQuery]" DisplayName="ReadSqlQuery" FileName="[in_DbQueryInfo(&quot;SqlFilePath&quot;)]" sap:VirtualizedContainerService.HintSize="484,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+            <TryCatch DisplayName="TryExecuteQuery" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="TryCatch_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <TryCatch.Try>
-                <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[out_InputDataItems]" DisplayName="Execute Query" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" ProviderName="[in_DbQueryInfo(&quot;ProviderName&quot;)]" Sql="[SqlQuery]" ConnectionString="[in_DbQueryInfo(&quot;ConnectionString&quot;)]">
+                <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[InputFileItems]" DisplayName="Execute Query" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" ProviderName="[in_DbQueryInfo(&quot;ProviderName&quot;)]" Sql="[SqlQuery]" ConnectionString="[in_DbQueryInfo(&quot;ConnectionString&quot;)]">
                   <ui:ExecuteQuery.Parameters>
                     <scg:Dictionary x:TypeArguments="x:String, Argument" />
                   </ui:ExecuteQuery.Parameters>
                 </ui:ExecuteQuery>
               </TryCatch.Try>
               <TryCatch.Catches>
-                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,352" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -385,7 +265,7 @@
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                     </ActivityAction.Argument>
-                    <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <Sequence sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_22">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -393,7 +273,7 @@
                       </sap:WorkflowViewStateService.ViewState>
                       <Assign DisplayName="Re-InitializeOutputDT" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_9">
                         <Assign.To>
-                          <OutArgument x:TypeArguments="sd:DataTable">[out_InputDataItems]</OutArgument>
+                          <OutArgument x:TypeArguments="sd:DataTable">[InputFileItems]</OutArgument>
                         </Assign.To>
                         <Assign.Value>
                           <InArgument x:TypeArguments="sd:DataTable">[new System.data.DataTable()]</InArgument>
@@ -405,7 +285,160 @@
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <If Condition="[out_InputDataItems.rows.count&gt;0]" DisplayName="QueryHasResults" sap:VirtualizedContainerService.HintSize="657,660" sap2010:WorkflowViewState.IdRef="If_12">
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[InputFileItems.Columns.Contains(&quot;Timestamp&quot;) and InputFileItems.Columns.Contains(&quot;Status&quot;)]" DisplayName="CheckTimestampAndStatus" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_21">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <ui:FilterDataTable DataTable="[InputFileItems]" DisplayName="SelectItemsWithEmptyTimestamp" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="334,160" sap2010:WorkflowViewState.IdRef="FilterDataTable_5" OutputDataTable="[out_InputDataItems]" SelectColumnsMode="Keep">
+                        <ui:FilterDataTable.Filters>
+                          <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                            <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
+                              <ui:FilterOperationArgument.Column>
+                                <InArgument x:TypeArguments="x:String">["Timestamp"]</InArgument>
+                              </ui:FilterOperationArgument.Column>
+                            </ui:FilterOperationArgument>
+                          </scg:List>
+                        </ui:FilterDataTable.Filters>
+                        <ui:FilterDataTable.SelectColumns>
+                          <scg:List x:TypeArguments="InArgument" Capacity="4">
+                            <x:Null />
+                          </scg:List>
+                        </ui:FilterDataTable.SelectColumns>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:FilterDataTable>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="AddTimestampAndStatusColumnExistingFile" sap:VirtualizedContainerService.HintSize="855,628" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[InputFileItems.Columns.Contains(&quot;Timestamp&quot;)]" DisplayName="AddTimestampColumnExistingFile" sap:VirtualizedContainerService.HintSize="813,51" sap2010:WorkflowViewState.IdRef="If_18">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <ui:FilterDataTable DataTable="[InputFileItems]" DisplayName="SelectEmptyTimestamp" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="FilterDataTable_6" OutputDataTable="[out_InputDataItems]" SelectColumnsMode="Keep">
+                              <ui:FilterDataTable.Filters>
+                                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                  <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
+                                    <ui:FilterOperationArgument.Column>
+                                      <InArgument x:TypeArguments="x:String">["Timestamp"]</InArgument>
+                                    </ui:FilterOperationArgument.Column>
+                                  </ui:FilterOperationArgument>
+                                </scg:List>
+                              </ui:FilterDataTable.Filters>
+                              <ui:FilterDataTable.SelectColumns>
+                                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                  <x:Null />
+                                </scg:List>
+                              </ui:FilterDataTable.SelectColumns>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:FilterDataTable>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="AddColumn" sap:VirtualizedContainerService.HintSize="304,214" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:AddDataColumn x:TypeArguments="sd:DataColumn" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="TimeStamp" DataTable="[InputFileItems]" DisplayName="AddTimestampColumn" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_7" />
+                              <Assign DisplayName="GetInputDataItemsAllRecords" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="sd:DataTable">[out_InputDataItems]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="sd:DataTable">[InputFileItems]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                        <If Condition="[InputFileItems.Columns.Contains(&quot;Status&quot;)]" DisplayName="AddStatusColumnExistingFile" sap:VirtualizedContainerService.HintSize="813,51" sap2010:WorkflowViewState.IdRef="If_19">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[&quot;Column Status Exist&quot;]">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:LogMessage>
+                          </If.Then>
+                          <If.Else>
+                            <ui:AddDataColumn x:TypeArguments="sd:DataColumn" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Status" DataTable="[InputFileItems]" DisplayName="AddStatusColumn" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_8" />
+                          </If.Else>
+                        </If>
+                        <If Condition="[{&quot;.xls&quot;,&quot;.xlsx&quot;}.Contains(Path.GetExtension(in_InputFilePath).ToLower)]" DisplayName="WriteNewColumns" sap:VirtualizedContainerService.HintSize="813,354" sap2010:WorkflowViewState.IdRef="If_20">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="ExcelScopeWriteInput" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_InputFilePath]">
+                              <ui:ExcelApplicationScope.Body>
+                                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                  </ActivityAction.Argument>
+                                  <ui:ExcelWriteRange AddHeaders="True" DataTable="[InputFileItems]" DisplayName="WriteColumnsToExcel" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_3" SheetName="[in_SheetName]" StartingCell="A1" />
+                                </ActivityAction>
+                              </ui:ExcelApplicationScope.Body>
+                            </ui:ExcelApplicationScope>
+                          </If.Then>
+                          <If.Else>
+                            <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[InputFileItems]" Delimitator="Comma" DisplayName="WriteColumnsToCsv" FilePath="[in_InputFilePath]" sap:VirtualizedContainerService.HintSize="334,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_3" />
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <If Condition="[InputFileItems.rows.count&gt;0]" DisplayName="QueryHasResults" sap:VirtualizedContainerService.HintSize="484,289" sap2010:WorkflowViewState.IdRef="If_12">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -413,123 +446,21 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <If Condition="[out_InputDataItems.Columns.Contains(&quot;Timestamp&quot;) and out_InputDataItems.Columns.Contains(&quot;Status&quot;)]" DisplayName="CheckTimestampAndStatusFromQuery" sap:VirtualizedContainerService.HintSize="621,483" sap2010:WorkflowViewState.IdRef="If_16">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <If.Then>
-                    <ui:FilterDataTable DataTable="[out_InputDataItems]" DisplayName="GetItemsByTimestamp" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="334,160" sap2010:WorkflowViewState.IdRef="FilterDataTable_3" OutputDataTable="[out_InputDataItems]" SelectColumnsMode="Keep">
-                      <ui:FilterDataTable.Filters>
-                        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                          <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
-                            <ui:FilterOperationArgument.Column>
-                              <InArgument x:TypeArguments="x:String">["Timestamp"]</InArgument>
-                            </ui:FilterOperationArgument.Column>
-                          </ui:FilterOperationArgument>
-                        </scg:List>
-                      </ui:FilterDataTable.Filters>
-                      <ui:FilterDataTable.SelectColumns>
-                        <scg:List x:TypeArguments="InArgument" Capacity="4">
-                          <x:Null />
-                        </scg:List>
-                      </ui:FilterDataTable.SelectColumns>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:FilterDataTable>
-                  </If.Then>
-                  <If.Else>
-                    <Sequence DisplayName="AddTimestampAndStatusColumnDBQuery" sap:VirtualizedContainerService.HintSize="242,325" sap2010:WorkflowViewState.IdRef="Sequence_19">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[not out_InputDataItems.Columns.Contains(&quot;Timestamp&quot;)]" DisplayName="AddTimestampColumnCsv" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_13">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <If.Then>
-                          <ui:AddDataColumn x:TypeArguments="sd:DataColumn" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="TimeStamp" DataTable="[out_InputDataItems]" DisplayName="AddTimestampColumn" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_5" />
-                        </If.Then>
-                        <If.Else>
-                          <ui:FilterDataTable DataTable="[out_InputDataItems]" DisplayName="GetItemsWithEmptyTimestamp" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="334,160" sap2010:WorkflowViewState.IdRef="FilterDataTable_4" OutputDataTable="[out_InputDataItems]" SelectColumnsMode="Keep">
-                            <ui:FilterDataTable.Filters>
-                              <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                                <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
-                                  <ui:FilterOperationArgument.Column>
-                                    <InArgument x:TypeArguments="x:String">["Timestamp"]</InArgument>
-                                  </ui:FilterOperationArgument.Column>
-                                </ui:FilterOperationArgument>
-                              </scg:List>
-                            </ui:FilterDataTable.Filters>
-                            <ui:FilterDataTable.SelectColumns>
-                              <scg:List x:TypeArguments="InArgument" Capacity="4">
-                                <x:Null />
-                              </scg:List>
-                            </ui:FilterDataTable.SelectColumns>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </ui:FilterDataTable>
-                        </If.Else>
-                      </If>
-                      <If Condition="[not out_InputDataItems.Columns.Contains(&quot;Status&quot;)]" DisplayName="AddStatusColumn" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_14">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <If.Then>
-                          <ui:AddDataColumn x:TypeArguments="sd:DataColumn" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Status" DataTable="[out_InputDataItems]" DisplayName="AddStatusColumn" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_6" />
-                        </If.Then>
-                      </If>
-                      <If Condition="[{&quot;.xls&quot;,&quot;.xlsx&quot;}.Contains(Path.GetExtension(in_InputFilePath).ToLower)]" DisplayName="DumpQueryIntoInputFile" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_15">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <If.Then>
-                          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="ExcelScope" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_InputFilePath]">
-                            <ui:ExcelApplicationScope.Body>
-                              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                <ActivityAction.Argument>
-                                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                </ActivityAction.Argument>
-                                <ui:ExcelWriteRange AddHeaders="True" DataTable="[out_InputDataItems]" DisplayName="WriteDBTableToExcel" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="[in_SheetName]" StartingCell="A1" />
-                              </ActivityAction>
-                            </ui:ExcelApplicationScope.Body>
-                          </ui:ExcelApplicationScope>
-                        </If.Then>
-                        <If.Else>
-                          <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[out_InputDataItems]" Delimitator="Comma" DisplayName="WriteDbTableToCsv" FilePath="[in_InputFilePath]" sap:VirtualizedContainerService.HintSize="334,152" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2" />
-                        </If.Else>
-                      </If>
-                    </Sequence>
-                  </If.Else>
-                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CheckTimestampAndStatus workflow" sap:VirtualizedContainerService.HintSize="379,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[WorkflowsDir+&quot;CheckTimestampAndStatusColumn.xaml&quot;]">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="sd:DataTable" x:Key="InputFileItems">[InputFileItems]</InArgument>
+                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_InputDataItems">[out_InputDataItems]</OutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_InputFilePath">[in_InputFilePath]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_SheetName">[in_SheetName]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
               </If.Then>
             </If>
           </Sequence>
         </If.Then>
       </If>
     </Sequence>
-    <Sequence DisplayName="Finalize" sap:VirtualizedContainerService.HintSize="1739,183" sap2010:WorkflowViewState.IdRef="Sequence_10">
+    <Sequence DisplayName="Finalize" sap:VirtualizedContainerService.HintSize="884,183" sap2010:WorkflowViewState.IdRef="Sequence_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
